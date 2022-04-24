@@ -1,9 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var lowerCase = ["abcdefghijklmnopqrstuvwxyz"]
-var upperCase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
-var numeric = [1234567890]
-var special = ["!@#$%^&*()?"]
+var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+var numeric = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+var special = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "?", "-", "+", "=", "<", ">", "/", "."]
 var password = ""
 
 
@@ -20,9 +20,9 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 function writePassword (){
-  var prompLength = window.prompt("Please enter the desired length of your password.");
+  var promptLength = window.prompt("Please enter the desired length of your password.");
 
-  if (prompLength < 8 | prompLength > 128) {
+  if (promptLength < 8 | promptLength > 128) {
     window.alert ("Please enter a value between 8 - 128 characters.");
     writePassword();
   }
@@ -35,9 +35,74 @@ function writePassword (){
   }
 
   if (!confirmUpper && !confirmLower && !confirmNumber && !confirmSpecial) {
-    window.alert("Please secelt at least one value.");
+    window.alert("Please select at least one value.");
     writePassword();
   }
 
+  else if (confirmLower && confirmUpper && confirmNumber && confirmSpecial){
+    list = lowerCase.concat(upperCase, numeric, special);
+  }
 
+  else if (confirmLower && confirmUpper && confirmNumber){
+    list = lowerCase.concat(upperCase, numeric);
+  }
+
+  else if (confirmLower && confirmUpper && confirmSpecial){
+    list = lowerCase.concat(upperCase, special);
+  }
+
+  else if (confirmLower && confirmNumber && confirmSpecial){
+    list = lowerCase.concat(numeric, special);
+  }
+
+  else if (confirmUpper && confirmNumber && confirmSpecial){
+    list = upperCase.concat(numeric, special);
+  }
+
+  else if (confirmLower && confirmUpper){
+    list = lowerCase.concat(upperCase)
+  }
+
+  else if (confirmLower && confirmNumber) {
+    list = lowerCase.concat(numeric)
+  }
+
+  else if (confirmLower && confirmSpecial) {
+    list = lowerCase.concat(special)
+  }
+
+  else if (confirmUpper && confirmNumber) {
+    list = upperCase.concat(numeric)
+  }
+
+  else if (confirmUpper && confirmSpecial) {
+    list = upperCase.concat(special)
+  }
+
+  else if (confirmNumber && confirmSpecial) {
+    list = numeric.concat(special)
+  }
+
+  else if (confirmLower) {
+    list = lowerCase
+  }
+
+  else if (confirmUpper) {
+    list = upperCase
+  }
+
+  else if (confirmNumber) {
+    list = numeric
+  }
+
+  else if (confirmSpecial) {
+    list = special
+  }
+
+  var password = []
+
+  for (i = 0; i < promptLength; i++) {
+    var choices = list[Math.floor(Math.random() * list.Length)]
+    console.log(choices)
+  }
 }
