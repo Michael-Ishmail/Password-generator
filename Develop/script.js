@@ -4,7 +4,7 @@ var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 var numeric = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
 var special = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "?", "-", "+", "=", "<", ">", "/", "."]
-var password = ""
+var choices;
 
 
 // Write password to the #password input
@@ -17,14 +17,14 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", generatePassword);
 
-function writePassword (){
+function generatePassword (){
   var promptLength = window.prompt("Please enter the desired length of your password.");
 
   if (promptLength < 8 | promptLength > 128) {
     window.alert ("Please enter a value between 8 - 128 characters.");
-    writePassword();
+    generatePassword();
   }
 
   else {
@@ -36,7 +36,7 @@ function writePassword (){
 
   if (!confirmUpper && !confirmLower && !confirmNumber && !confirmSpecial) {
     window.alert("Please select at least one value.");
-    writePassword();
+    generatePassword();
   }
 
   else if (confirmLower && confirmUpper && confirmNumber && confirmSpecial){
@@ -99,10 +99,16 @@ function writePassword (){
     list = special
   }
 
-  var password = []
+  var password = [];
 
   for (i = 0; i < promptLength; i++) {
     var choices = list[Math.floor(Math.random() * list.Length)]
-    console.log(choices)
+    password.push(choices);
   }
+  
+  var ps = password.join("")
+  writePassword(ps)
+  return ps;
 }
+
+
