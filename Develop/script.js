@@ -1,9 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var lowerCase = "abcdefghijklmnopqrstuvwxyz"
-var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-var numeric = "1234567890"
-var special = "!@#$%^&*()?"
+var lowerCase = ["abcdefghijklmnopqrstuvwxyz"]
+var upperCase = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+var numeric = [1234567890]
+var special = ["!@#$%^&*()?"]
 var password = ""
 
 
@@ -34,7 +34,10 @@ function writePassword (){
     confirmSpecial = window.confirm ("Would you like to include special characters?")  
   }
 
-  
+  if (!confirmUpper && !confirmLower && !confirmNumber && !confirmSpecial) {
+    window.alert("Please secelt at least one value.");
+    writePassword();
+  }
 
 
 }
