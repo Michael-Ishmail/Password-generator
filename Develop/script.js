@@ -4,7 +4,7 @@ var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 var numeric = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
 var special = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "?", "-", "+", "=", "<", ">", "/", "."]
-var choices;
+var list;
 
 
 // Write password to the #password input
@@ -16,23 +16,20 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword);
-
 function generatePassword (){
   var promptLength = window.prompt("Please enter the desired length of your password.");
 
   if (promptLength < 8 | promptLength > 128) {
     window.alert ("Please enter a value between 8 - 128 characters.");
     generatePassword();
+
+  } else {
+    var confirmUpper = window.confirm ("Would you like to include upper case characters?")
+    var confirmLower = window.confirm ("Would you like to include lower case characters?")
+    var confirmNumber = window.confirm ("Would you like to include numbers?")
+    var confirmSpecial = window.confirm ("Would you like to include special characters?") 
   }
 
-  else {
-    confirmUpper = window.confirm ("Would you like to include upper case characters?")
-    confirmLower = window.confirm ("Would you like to include lower case characters?")
-    confirmNumber = window.confirm ("Would you like to include numbers?")
-    confirmSpecial = window.confirm ("Would you like to include special characters?")  
-  }
 
   if (!confirmUpper && !confirmLower && !confirmNumber && !confirmSpecial) {
     window.alert("Please select at least one value.");
@@ -99,16 +96,14 @@ function generatePassword (){
     list = special
   }
 
-  var password = [];
+  var outputPassword = [];
 
   for (i = 0; i < promptLength; i++) {
-    var choices = list[Math.floor(Math.random() * list.Length)]
-    password.push(choices);
+    var output = list[Math.floor(Math.random() * Math.floor(list.length))]
+    outputPassword.push(output);
   }
-  
-  var ps = password.join("")
-  writePassword(ps)
-  return ps;
+  return outputPassword.join("");
 }
 
-
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
