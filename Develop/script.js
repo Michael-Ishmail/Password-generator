@@ -17,7 +17,7 @@ function writePassword() {
 }
 
 function generatePassword (){
-  var promptLength = window.prompt("Please enter the desired length of your password.");
+  var promptLength = window.prompt("Please enter the desired length of your password between 8 - 128 characters.");
 
   if (promptLength < 8 | promptLength > 128) {
     window.alert ("Please enter a value between 8 - 128 characters.");
